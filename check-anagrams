@@ -1,0 +1,47 @@
+//4. Write a program to check if two strings are Anagrams?
+
+//An anagram is a word or phrase created by rearranging the letters of another word or phrase, usually using all of the original letters exactly once.
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+	    System.out.println("Enter string 1:");
+	    String fisrtString  = scanner.next();
+	    System.out.println("Enter string 2:");
+	    String secondString = scanner.next();
+	    
+	    if(isAnagram(fisrtString, secondString)) // method call for checking anagrams or not
+	        System.out.println("True, they are anagrams!!!");
+	    else
+	        System.out.println("No, they are not anagrams!!!");
+		
+	}
+	public static boolean isAnagram(String s, String t) {
+	    // if number of characters in both strings are not equal then they are not anagrams
+        if(s.length() != t.length()) 
+            return false;
+        
+        int[] countArray = new int[26];// an array to store frequencies of charcters in string
+
+        //incrementing the frequencies of characters that are in string 1
+        for(char character : s.toCharArray())
+        {
+            countArray[character - 'a']++;
+        } 
+        // decrementing the frequencies of characters that are in string 2
+        for(char character : t.toCharArray())
+        {
+            countArray[character - 'a']--;
+        }   
+        //if all frequencies are zero then they are anagrams
+        for(int count : countArray)
+        {
+            if(count != 0)
+                return false;
+        }
+        
+        return true;
+    }
+}
