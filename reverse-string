@@ -1,0 +1,21 @@
+//6. Write a program to reverse a string. 
+//Example: ○ Input : Welcome ○ Output : emoclew
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter String to reverse");
+		String word = scanner.nextLine();
+		StringBuilder result = new StringBuilder(); //to store the reverse string
+		
+		//iterating through the input string from the end
+		for(int index = word.length()-1; index >= 0; index--)
+		{
+		    //append every character to the result
+		    result.append(word.charAt(index));
+		}
+		System.out.println(result.toString());
+	}
+}
