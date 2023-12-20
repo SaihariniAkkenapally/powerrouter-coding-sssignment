@@ -1,0 +1,36 @@
+//1. Write a Java program to find the longest substring from a given string that doesn’t contain any duplicate characters.
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+	    System.out.println("Enter your string:");
+	    String s = scanner.nextLine().toLowerCase();
+		HashSet<Character> charSet = new HashSet();//set to store characters
+        int length = 0;
+        int left = 0;
+        int startIndex = 0; // to store start index of result subarray
+        int endIndex = 0; // to store end index of result subarray
+
+        for(int right = 0; right < s.length(); right++)
+        {
+            //if cuurent character is already present then we need to remove that character from the left
+            while(charSet.contains(s.charAt(right)))
+            {
+                charSet.remove(s.charAt(left));
+                left++;
+            }
+            // add curent character to set 
+            charSet.add(s.charAt(right));
+            //if we found the maximum length substring then we need to update indices
+            if(length <= right - left + 1)
+            {
+                length = right - left + 1;
+                startIndex = left;
+                endIndex = right;
+            }
+        }
+        System.out.println(s.substring(startIndex, endIndex+1));
+	}
+	
+}
