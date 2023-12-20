@@ -1,0 +1,37 @@
+//3. Write a program to print all permutations of a string.
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+	    System.out.println("Enter your string:");
+	    String s = scanner.nextLine();
+		permutation(s,0,s.length()-1);
+	}
+	public static void permutation(String s, int l, int r)
+	{
+	    if(l == r)//we got a permutation after all swappings
+	        System.out.println(s);
+	    else
+	    {
+	        //iterate throught the string
+	        for(int index = l; index <= r; index++)
+	        {
+	            s = swap(s, index, l);//fixing intial character after swapping
+	            permutation(s, l+1, r);//permutation for rest part of string 
+	            s = swap(s, index, l);
+	        }
+	    }
+	}
+	//method to swapping characters
+	public static String swap(String s, int index, int position)
+	{
+	    char[] array = s.toCharArray();
+	    char c = s.charAt(index);
+	    array[index] = array[position];
+	    array[position] = c;
+	    return String.valueOf(array);
+	}
+	
+}
