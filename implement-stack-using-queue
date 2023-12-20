@@ -1,0 +1,58 @@
+//5. Implement stack using queue without using an array or linked list.
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		MyStack stack = new MyStack();
+		stack.push(1);
+		stack.push(2);
+		stack.push(5);
+		stack.print();
+		stack.push(8);
+		System.out.println(stack.top());
+		stack.print();
+		System.out.println(stack.pop());
+		stack.print();
+		stack.push(10);
+		stack.print();
+		System.out.println(stack.empty());
+		System.out.println(stack.top());
+		stack.push(100);
+		stack.print();
+		stack.pop();
+		stack.print();
+	}
+}
+class MyStack {
+    Queue<Integer> queue;
+    public MyStack() {
+        queue = new LinkedList<Integer>();
+    }
+    //adda an element
+    public void push(int x) {
+        queue.add(x);
+        // to maintain the order of stack we are iterating through it and adding at the end
+        for(int index = 0; index < queue.size()-1; index++)
+        {
+            queue.add(queue.poll());
+        }
+    }
+    // removes top element and returns
+    public int pop() {
+        return queue.poll();
+    }
+    //returns top element
+    public int top() {
+        return queue.peek();
+    }
+    // return whether stack is empty or not
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+    //prints values
+    public void print()
+    {
+        System.out.println(queue);
+    }
+}
