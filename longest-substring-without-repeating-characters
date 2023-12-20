@@ -8,19 +8,19 @@ public class Main
 	    String s = scanner.nextLine().toLowerCase();
 		HashSet<Character> charSet = new HashSet();//set to store characters
         int length = 0;
-        int left = 0;
-        int startIndex = 0; // to store start index of result subarray
-        int endIndex = 0; // to store end index of result subarray
-
+        int left = 0;// it is start of window
+        int startIndex = 0; // to store the start index of the result subarray
+        int endIndex = 0; // to store the end index of the result subarray
+	//iterate through string, right denotes the end of the window
         for(int right = 0; right < s.length(); right++)
         {
-            //if cuurent character is already present then we need to remove that character from the left
+            //if current character is already present then we need to remove characters from the left
             while(charSet.contains(s.charAt(right)))
             {
                 charSet.remove(s.charAt(left));
                 left++;
             }
-            // add curent character to set 
+            // add current character to set 
             charSet.add(s.charAt(right));
             //if we found the maximum length substring then we need to update indices
             if(length <= right - left + 1)
